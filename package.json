@@ -17,6 +17,10 @@
     "cli"
   ],
   "author": "zuren",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/zuren/node-fpaste"
+  },
   "license": "MIT",
   "dependencies": {
     "async": "^0.9.0",
