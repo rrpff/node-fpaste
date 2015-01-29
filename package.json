@@ -1,0 +1,30 @@
+{
+  "name": "fpaste",
+  "version": "0.0.1",
+  "description": "Node utility and CLI for fedora's fpaste.org",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "bin": {
+    "fpaste": "bin/cli.js"
+  },
+  "keywords": [
+    "fpaste",
+    "fedora",
+    "pastebin",
+    "paste",
+    "cli"
+  ],
+  "author": "zuren",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^0.9.0",
+    "language-detect": "^1.0.0",
+    "request": "^2.51.0",
+    "yargs": "^1.3.3"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0"
+  }
+}
