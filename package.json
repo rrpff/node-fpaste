@@ -1,6 +1,6 @@
 {
   "name": "fpaste",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Node utility and CLI for fedora's fpaste.org",
   "main": "index.js",
   "scripts": {
