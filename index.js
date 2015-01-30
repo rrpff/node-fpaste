@@ -41,6 +41,13 @@ fpaste.post = function(opts, cb){
 
 	request.post(query, function(err, res, body){
 		var obj = JSON.parse(body);
+		console.log(obj);
+
+		// fpaste response doesn't include the url, so put it together
+		obj.result.url = fpaste.HOST + obj.result.id;
+		// Include hash if paste is private
+		if(private && obj.result.hash) obj.result.url += "/" + obj.result.hash;
+
 		err = utils.handleErrors(err, obj);
 		cb(err, obj);
 	});

@@ -75,10 +75,7 @@ var CLI = module.exports = {
 			fpaste.post(opts, function(err, data){
 				if(err) throw err;
 				// Pass response if verbose passed, or just the URL if not.
-				console.log(argv.verbose
-					? data
-					// Include hash if paste is private.
-					: fpaste.HOST + data.result.id + (opts.private && data.result.hash ? "/" + data.result.hash : ""));
+				console.log(argv.verbose ? data : data.result.url);
 			});
 		});
 
