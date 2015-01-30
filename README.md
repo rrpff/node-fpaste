@@ -33,8 +33,7 @@ Make a paste:
 
 ```js
 fpaste.post("This is my paste", function(err, res){
-	var url = fpaste.HOST + err.result.id;
-	console.log(url);
+	console.log(res.url);
 	// => http://fpaste.org/123456
 });
 ```
