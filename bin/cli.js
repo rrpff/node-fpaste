@@ -20,11 +20,13 @@ var fs = require("fs"),
 // ...and the fpaste module.
 var fpaste = require("../");
 
+process.title = "fpaste";
+
 // Create handler object
 // Export for sake of it, may be useful
 var CLI = module.exports = {
 	// Get post from fpaste.org
-	get: function(){
+	get: function(cb){
 
 		var opts = {id: argv.id};
 		// Include auth if passed
@@ -33,12 +35,12 @@ var CLI = module.exports = {
 
 		// Get data from fpaste
 		fpaste.get(opts, function(err, res){
-			console.log(!argv.verbose && res.result ? res.result.data : res);
+			cb(err, res, !argv.verbose && res.result ? res.result.data : res);
 		});
 
 	},
 	// Post file to fpaste.org
-	post: function(){
+	post: function(cb){
 
 		// Relevant post values
 		var values = ["user", "password", "private", "project", "expire"];
@@ -73,9 +75,8 @@ var CLI = module.exports = {
 			opts.data = results.contents;
 
 			fpaste.post(opts, function(err, data){
-				if(err) throw err;
 				// Pass response if verbose passed, or just the URL if not.
-				console.log(argv.verbose ? data : data.result.url);
+				cb(err, data, argv.verbose ? data : data.result.url);
 			});
 		});
 
@@ -84,5 +85,7 @@ var CLI = module.exports = {
 
 // Call the relevant CLI option.
 // Assume a GET operation if ID is present.
-CLI[argv.id ? "get" : "post"]();
-process.title = "fpaste";
+CLI[argv.id ? "get" : "post"](function(err, res, msg){
+	if(err) throw err;
+	console.log(msg);
+});
